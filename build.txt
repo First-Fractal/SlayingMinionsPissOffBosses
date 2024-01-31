@@ -1,0 +1,3 @@
+displayName = Slaying "Minions" Piss Off Bosses
+author = First Fractal
+version = 0.1
