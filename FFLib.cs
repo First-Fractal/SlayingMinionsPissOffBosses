@@ -4,7 +4,6 @@ using Terraria.Chat;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using System.Linq;
-using System;
 
 //this is my own libary that I use to store snippits. I don't want it to be it's own mod, so I'll use copy and paste this file when needed.
 namespace SlayingMinionsPissOffBosses
@@ -12,30 +11,40 @@ namespace SlayingMinionsPissOffBosses
     public class ffVar
     {
         //list of all the boss parts
-        public static int[] BossParts = { NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.Creeper, NPCID.SkeletronHand, NPCID.SkeletronHead, NPCID.WallofFleshEye, NPCID.TheDestroyer, NPCID.TheDestroyerBody, NPCID.TheDestroyerTail, NPCID.Probe, NPCID.PrimeCannon, NPCID.PrimeLaser, NPCID.PrimeSaw, NPCID.PrimeVice, NPCID.PlanterasHook, NPCID.PlanterasTentacle, NPCID.GolemFistLeft, NPCID.GolemFistRight, NPCID.GolemHead, NPCID.GolemHeadFree, NPCID.CultistBossClone, NPCID.MoonLordCore, NPCID.MoonLordHand, NPCID.MoonLordHead, NPCID.MoonLordFreeEye, NPCID.MoonLordLeechBlob };
+        public static int[] BossParts = { NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.Creeper, 
+            NPCID.SkeletronHand, NPCID.SkeletronHead, NPCID.WallofFleshEye, NPCID.TheDestroyer, NPCID.TheDestroyerBody, NPCID.TheDestroyerTail,
+            NPCID.Probe, NPCID.PrimeCannon, NPCID.PrimeLaser, NPCID.PrimeSaw, NPCID.PrimeVice, NPCID.PlanterasHook, NPCID.PlanterasTentacle, 
+            NPCID.GolemFistLeft, NPCID.GolemFistRight, NPCID.GolemHead, NPCID.GolemHeadFree, NPCID.CultistBossClone, NPCID.MoonLordCore, 
+            NPCID.MoonLordHand, NPCID.MoonLordHead, NPCID.MoonLordFreeEye, NPCID.MoonLordLeechBlob };
 
         public class slimes
         {
             //list of all  the normal slimes
-            public static int[] normalSlimes = { NPCID.GreenSlime, NPCID.BlueSlime, NPCID.RedSlime, NPCID.PurpleSlime, NPCID.YellowSlime, NPCID.BlackSlime };
+            public static int[] normalSlimes = { NPCID.GreenSlime, NPCID.BlueSlime, NPCID.RedSlime, 
+                NPCID.PurpleSlime, NPCID.YellowSlime, NPCID.BlackSlime };
 
             //list of all slimes that can only be found in certain biomes
-            public static int[] biomeSlimes = { NPCID.IceSlime, NPCID.SpikedIceSlime, NPCID.SandSlime, NPCID.JungleSlime, NPCID.JungleSlime, NPCID.MotherSlime, NPCID.BabySlime, NPCID.LavaSlime, NPCID.DungeonSlime };
+            public static int[] biomeSlimes = { NPCID.IceSlime, NPCID.SpikedIceSlime, NPCID.SandSlime, 
+                NPCID.JungleSlime, NPCID.JungleSlime, NPCID.MotherSlime, NPCID.BabySlime, NPCID.LavaSlime, NPCID.ShimmerSlime};
 
             //list of all slimes that can only be found in hardmode
-            public static int[] hardmodeSlimes = { NPCID.ToxicSludge, NPCID.CorruptSlime, NPCID.Slimeling, NPCID.Slimer, NPCID.Slimer2,  NPCID.Crimslime, NPCID.Gastropod, NPCID.IlluminantSlime};
+            public static int[] hardmodeSlimes = { NPCID.ToxicSludge, NPCID.CorruptSlime, NPCID.Slimeling, 
+                NPCID.Slimer, NPCID.Slimer2,  NPCID.Crimslime, NPCID.Gastropod, NPCID.IlluminantSlime};
 
             //list of all slimes that are special/rare
-            public static int[] specialSlimes = { NPCID.Pinky, NPCID.GoldenSlime, NPCID.UmbrellaSlime, NPCID.WindyBalloon, NPCID.ShimmerSlime};
+            public static int[] specialSlimes = { NPCID.Pinky, NPCID.GoldenSlime, NPCID.UmbrellaSlime, 
+                NPCID.WindyBalloon, NPCID.DungeonSlime};
 
             //list of all slimes that are a part of a hoilday
-            public static int[] festiveSlimes = { NPCID.SlimeMasked, NPCID.SlimeRibbonGreen, NPCID.SlimeRibbonRed, NPCID.SlimeRibbonYellow, NPCID.SlimeRibbonWhite };
+            public static int[] festiveSlimes = { NPCID.SlimeMasked, NPCID.SlimeRibbonGreen, NPCID.SlimeRibbonRed, 
+                NPCID.SlimeRibbonYellow, NPCID.SlimeRibbonWhite };
 
             //list of all slimes that are bosses
             public static int[] bossSlime = { NPCID.KingSlime, NPCID.QueenSlimeBoss };
 
             //list of all slimes that are boss minions
-            public static int[] bossMinionSlimes = { NPCID.SlimeSpiked, NPCID.QueenSlimeMinionBlue, NPCID.QueenSlimeMinionPink, NPCID.QueenSlimeMinionPurple };
+            public static int[] bossMinionSlimes = { NPCID.SlimeSpiked, NPCID.QueenSlimeMinionBlue, NPCID.QueenSlimeMinionPink, 
+                NPCID.QueenSlimeMinionPurple };
 
             //list of all slimes in vanilla
             public static int[] allSlimes = normalSlimes.Concat(biomeSlimes).ToArray().Concat(hardmodeSlimes).ToArray()
