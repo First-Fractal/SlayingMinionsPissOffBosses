@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SlayingMinionsPissOffBosses
@@ -48,11 +46,25 @@ namespace SlayingMinionsPissOffBosses
                     if (npc.type == boss.type)
                     {
                         //increase it's max hp
-                        npc.lifeMax += EnrangeHPFormula(boss.enrange, npc.lifeMax);
+                        int moreLife = EnrangeHPFormula(boss.enrange, npc.lifeMax);
+
+                        //decrease it if it's a worm part
+                        if (boss.worm)
+                            moreLife = (int)(moreLife*boss.wormModifier);
+
+                        //apply the new life to the boss
+                        npc.lifeMax += moreLife;
                         npc.life = npc.lifeMax;
 
                         //increase it's max damage
-                        npc.damage += EnrangeDamageFormula(boss.enrange, npc.damage);
+                        int moreDamage = EnrangeDamageFormula(boss.enrange, npc.damage);
+
+                        //decrease it if it's a worm part
+                        if (boss.worm)
+                            moreDamage = (int)(moreDamage*boss.wormModifier);
+
+                        //apply the new damage to the boss
+                        npc.damage += moreDamage;
                     }
                 }
             }
@@ -85,21 +97,7 @@ namespace SlayingMinionsPissOffBosses
                         }
                     });
                 }
-
             }
-
-            ////get each type of slime in the list
-            //foreach (int slime in ffVar.slimes.allSlimes)
-            //{
-            //    //check if the current npc is a slime
-            //    if (npc.type == slime)
-            //    {
-            //        //increase the engrage factor
-            //        BossMinionTracker.bossPissedOff[0, 1] += 1;
-            //        ffFunc.Talk("Kill Count for King Slime: " + BossMinionTracker.bossPissedOff[0, 1].ToString(), Colors.RarityRed);
-            //        return;
-            //    }
-            //}
 
             base.OnKill(npc);
         }

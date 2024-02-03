@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SlayingMinionsPissOffBosses
 {
     internal class BossMinionTracker : ModSystem
     {
+        //store a list of all of the minions for King Slime
         PissedOffBoss KingSlime = new PissedOffBoss(NPCID.KingSlime);
         void defineKingSlimeMinions(ref PissedOffBoss KingSlime)
         {
@@ -26,18 +26,174 @@ namespace SlayingMinionsPissOffBosses
 
         }
 
+
+        //store a list of all of the minions for Eye of Cthulhu
+        PissedOffBoss EoC = new PissedOffBoss(NPCID.EyeofCthulhu);
+        void defineEoCMinions(ref PissedOffBoss EoC)
+        {
+            EoC.minions.Add([0.5, NPCID.ServantofCthulhu]);
+
+            EoC.minions.Add([1.0,
+                NPCID.DemonEye2, NPCID.PurpleEye2, NPCID.GreenEye2, NPCID.DialatedEye2, NPCID.SleepyEye2, NPCID.CataractEye2, 
+                NPCID.DemonEye, NPCID.CataractEye, NPCID.SleepyEye, NPCID.GreenEye, NPCID.PurpleEye, NPCID.DialatedEye, 
+                NPCID.DemonEyeOwl, NPCID.DemonEyeSpaceship]);
+
+            EoC.minions.Add([1.25, NPCID.WanderingEye]);
+        }
+
+
+        //store a list of all of the minions for Eater of Worlds
+        PissedOffBoss EoWHead = new PissedOffBoss(NPCID.EaterofWorldsHead, true);
+        PissedOffBoss EoWBody = new PissedOffBoss(NPCID.EaterofWorldsBody, true);
+        PissedOffBoss EoWTail = new PissedOffBoss(NPCID.EaterofWorldsTail, true);
+        void defineEoWMinions(ref PissedOffBoss EoW)
+        {
+            EoW.minions.Add([0.3,
+                NPCID.DevourerHead, NPCID.DevourerBody, NPCID.DevourerTail]);
+
+            EoW.minions.Add([1.0,
+                NPCID.BigEater, NPCID.LittleEater, NPCID.EaterofSouls]);
+
+            EoW.minions.Add([1.05,
+                NPCID.SeekerHead, NPCID.SeekerBody, NPCID.SeekerTail]);
+
+            EoW.minions.Add([1.15,
+                NPCID.Corruptor, NPCID.Clinger, NPCID.CorruptSlime, NPCID.Slimeling, NPCID.Slimer, NPCID.Slimer2]);
+
+            EoW.minions.Add([1.25,
+                NPCID.CorruptGoldfish, NPCID.BigMimicCorruption, NPCID.DarkMummy, NPCID.CursedHammer, NPCID.CorruptBunny, 
+                NPCID.SandsharkCorrupt, NPCID.PigronCorruption]);
+        }
+
+
+        //store a list of all of the minions for Eye of Cthulhu
+        PissedOffBoss BoC = new PissedOffBoss(NPCID.BrainofCthulhu);
+        void defineBoCMinions(ref PissedOffBoss BoC)
+        {
+            BoC.minions.Add([0.5, NPCID.Creeper]);
+
+            BoC.minions.Add([1.0, NPCID.BigCrimera, NPCID.LittleCrimera, NPCID.BloodCrawler, NPCID.BloodCrawlerWall, NPCID.FaceMonster]);
+
+            BoC.minions.Add([1.25, NPCID.FloatyGross, NPCID.Crimslime, NPCID.Herpling, NPCID.IchorSticker]);
+
+            BoC.minions.Add([1.5, NPCID.BloodFeeder, NPCID.BigMimicCrimson, NPCID.BloodMummy, NPCID.CrimsonAxe, NPCID.PigronCrimson, 
+                NPCID.SandsharkCrimson]);
+        }
+
+
+        //store a list of all of the minions for Queen Bee
+        PissedOffBoss QueenBee = new PissedOffBoss(NPCID.QueenBee);
+        void defineQueenBeeMinions(ref PissedOffBoss QueenBee)
+        {
+            QueenBee.minions.Add([0.5, NPCID.Bee, NPCID.BeeSmall]);
+
+            QueenBee.minions.Add([1, NPCID.BigHornetStingy, NPCID.LittleHornetStingy, NPCID.BigHornetSpikey, NPCID.LittleHornetSpikey, 
+                NPCID.BigHornetLeafy, NPCID.LittleHornetLeafy, NPCID.BigHornetHoney, NPCID.LittleHornetHoney, NPCID.BigHornetFatty, 
+                NPCID.LittleHornetFatty, NPCID.BigStinger, NPCID.LittleStinger, NPCID.HornetFatty, NPCID.HornetHoney, NPCID.HornetLeafy, 
+                NPCID.HornetSpikey, NPCID.HornetStingy]);
+
+            QueenBee.minions.Add([1.25, NPCID.GiantMossHornet, NPCID.BigMossHornet, NPCID.LittleMossHornet, NPCID.TinyMossHornet, NPCID.MossHornet]);
+        }
+
+
+        //store a list of all of the minions for Skeletron
+        PissedOffBoss Skeletron = new PissedOffBoss(NPCID.Skeleton);
+        void defineSkeletronMinions(ref PissedOffBoss Skeletron)
+        {
+            Skeletron.minions.Add([0.75, NPCID.Skeleton]);
+
+            Skeletron.minions.Add([1.15, NPCID.BigPantlessSkeleton, NPCID.SmallPantlessSkeleton, NPCID.BigMisassembledSkeleton, 
+                NPCID.SmallMisassembledSkeleton, NPCID.BigHeadacheSkeleton, NPCID.SmallHeadacheSkeleton, NPCID.BigSkeleton, 
+                NPCID.SmallSkeleton, NPCID.HeavySkeleton, NPCID.Skeleton, NPCID.UndeadMiner, NPCID.HeadacheSkeleton, 
+                NPCID.MisassembledSkeleton, NPCID.PantlessSkeleton, NPCID.BoneThrowingSkeleton, NPCID.BoneThrowingSkeleton2, 
+                NPCID.BoneThrowingSkeleton3, NPCID.BoneThrowingSkeleton4]);
+
+            Skeletron.minions.Add([1.25,NPCID.BigBoned, NPCID.ShortBones, NPCID.AngryBones, NPCID.DarkCaster, NPCID.CursedSkull, 
+                NPCID.AngryBonesBig, NPCID.AngryBonesBigMuscle, NPCID.AngryBonesBigHelmet, NPCID.GreekSkeleton]);
+
+            Skeletron.minions.Add([1.5,NPCID.Tim, NPCID.RuneWizard, NPCID.ArmoredSkeleton, NPCID.SkeletonArcher, NPCID.SkeletonAstonaut, 
+                NPCID.SkeletonAlien, NPCID.SkeletonTopHat]);
+
+            Skeletron.minions.Add([1000,NPCID.DungeonGuardian]);
+        }
+
+
+        //store a list of all of the minions for Deerclops
+        PissedOffBoss Deerclops = new PissedOffBoss(NPCID.Deerclops);
+        void defineDeerclopsMinions(ref PissedOffBoss Deerclops)
+        {
+            Deerclops.minions.Add([1, NPCID.IceSlime, NPCID.Penguin, NPCID.IceBat, NPCID.SnowFlinx, NPCID.SpikedIceSlime, NPCID.ArmoredViking, 
+                NPCID.ZombieEskimo, NPCID.IceSlime, NPCID.Penguin, NPCID.ZombieEskimo, NPCID.UndeadViking]);
+
+            Deerclops.minions.Add([1.25,
+                NPCID.IceElemental, NPCID.IceMimic, NPCID.Wolf, NPCID.IceTortoise, NPCID.IcyMerman, NPCID.SnowmanGangsta, 
+                NPCID.MisterStabby, NPCID.SnowBalla, NPCID.IceTortoise, NPCID.Wolf]);
+
+            Deerclops.minions.Add([1.5,
+                NPCID.CorruptPenguin, NPCID.CrimsonPenguin, NPCID.PigronCorruption, NPCID.PigronCrimson, NPCID.PigronHallow, NPCID.IceGolem]);
+        }
+
+
+        //store a list of all of the minions for the Wall of Flesh
+        PissedOffBoss WoF = new PissedOffBoss(NPCID.WallofFlesh);
+        void defineWallOfFleshMinions(ref PissedOffBoss WoF)
+        {
+            WoF.minions.Add([0.35, NPCID.TheHungry, NPCID.TheHungryII, NPCID.LeechHead, NPCID.LeechBody, NPCID.LeechTail]);
+            WoF.minions.Add([1, NPCID.FireImp, NPCID.BoneSerpentHead, NPCID.BoneSerpentBody, NPCID.BoneSerpentTail, NPCID.Hellbat, 
+                NPCID.Demon, NPCID.VoodooDemon, NPCID.LavaSlime]);
+
+            WoF.minions.Add([1.5, NPCID.RedDevil]);
+        }
+
+
+        //variable for storing the list of bosses
         public static PissedOffBoss[] allBosses = new PissedOffBoss[30];
 
+        //define all of the minions and the list of bosses
         public override void Load()
         {
             defineKingSlimeMinions(ref KingSlime);
-
             allBosses[0] = KingSlime;
+
+            defineEoCMinions(ref EoC);
+            allBosses[1] = EoC;
+
+            defineEoWMinions(ref EoWHead);
+            allBosses[2] = EoWHead;
+            defineEoWMinions(ref EoWBody);
+            allBosses[3] = EoWBody;
+            defineEoWMinions(ref EoWTail);
+            allBosses[4] = EoWTail;
+
+            defineBoCMinions(ref BoC);
+            allBosses[5] = BoC;
+
+            defineQueenBeeMinions(ref QueenBee);
+            allBosses[6] = QueenBee;
+
+            defineSkeletronMinions(ref Skeletron);
+            allBosses[7] = Skeletron;
+
+            defineDeerclopsMinions(ref Deerclops);
+            allBosses[8] = Deerclops;
+
+            defineDeerclopsMinions(ref WoF);
+            allBosses[9] = WoF;
         }
 
+        //remove the definition for all of the bosses
         public override void Unload()
         {
             KingSlime = null;
+            EoC = null;
+            EoWHead = null;
+            EoWBody = null;
+            EoWTail = null;
+            BoC = null;
+            QueenBee = null;
+            Skeletron = null;
+            Deerclops = null;
+            WoF = null;
 
             allBosses = null;
         }
