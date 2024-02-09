@@ -8,7 +8,7 @@ namespace SlayingMinionsPissOffBosses
     internal class MinionSlayPissOff : GlobalNPC
     {
         //formula for caculating the amount of hp to increase
-        int EnrangeHPFormula(double enrage, int HP)
+        public static int EnrangeHPFormula(double enrage, int HP)
         {
             //get 1% of the health
             HP = (int) (HP * 0.01);
@@ -21,7 +21,7 @@ namespace SlayingMinionsPissOffBosses
         }
 
         //formula for caculating the amount of damage to increase
-        int EnrangeDamageFormula(double enrage, int damage)
+        public static int EnrangeDamageFormula(double enrage, int damage)
         {
             //take 10% of the damage
             int dam = (int)(damage * 0.1);
@@ -46,7 +46,7 @@ namespace SlayingMinionsPissOffBosses
                     if (npc.type == boss.type)
                     {
                         //increase it's max hp
-                        int moreLife = EnrangeHPFormula(boss.enrange, npc.lifeMax);
+                        int moreLife = EnrangeHPFormula(boss.enrage, npc.lifeMax);
 
                         //decrease it if it's a worm part
                         if (boss.worm)
@@ -57,7 +57,7 @@ namespace SlayingMinionsPissOffBosses
                         npc.life = npc.lifeMax;
 
                         //increase it's max damage
-                        int moreDamage = EnrangeDamageFormula(boss.enrange, npc.damage);
+                        int moreDamage = EnrangeDamageFormula(boss.enrage, npc.damage);
 
                         //decrease it if it's a worm part
                         if (boss.worm)
@@ -91,7 +91,7 @@ namespace SlayingMinionsPissOffBosses
                             if (npc.type == (short)level[i])
                             {
                                 //increase the current boss enrage and killcount
-                                boss.enrange += (double)level[0];
+                                boss.enrage += (double)level[0];
                                 boss.killCount++;
                             }
                         }

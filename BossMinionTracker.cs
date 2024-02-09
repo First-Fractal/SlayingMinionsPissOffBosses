@@ -1,7 +1,4 @@
-﻿using Ionic.Zlib;
-using System.IO.Pipelines;
-using Terraria.GameContent.RGB;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SlayingMinionsPissOffBosses
@@ -9,7 +6,7 @@ namespace SlayingMinionsPissOffBosses
     internal class BossMinionTracker : ModSystem
     {
         //store a list of all of the minions for King Slime
-        PissedOffBoss KingSlime = new PissedOffBoss(NPCID.KingSlime);
+        PissedOffBoss KingSlime = new PissedOffBoss(NPCID.KingSlime, "King Slime", Abbr:"KS");
         void defineKingSlimeMinions(ref PissedOffBoss KingSlime)
         {
             KingSlime.minions.Add([0.1, NPCID.SlimeSpiked]);
@@ -33,7 +30,7 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Eye of Cthulhu
-        PissedOffBoss EoC = new PissedOffBoss(NPCID.EyeofCthulhu);
+        PissedOffBoss EoC = new PissedOffBoss(NPCID.EyeofCthulhu, "Eye of Cthulhu", Abbr:"EoC");
         void defineEoCMinions(ref PissedOffBoss EoC)
         {
             EoC.minions.Add([0.1, NPCID.ServantofCthulhu]);
@@ -48,9 +45,9 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Eater of Worlds
-        PissedOffBoss EoWHead = new PissedOffBoss(NPCID.EaterofWorldsHead, Worm:true);
-        PissedOffBoss EoWBody = new PissedOffBoss(NPCID.EaterofWorldsBody, Worm:true);
-        PissedOffBoss EoWTail = new PissedOffBoss(NPCID.EaterofWorldsTail, Worm:true);
+        PissedOffBoss EoWHead = new PissedOffBoss(NPCID.EaterofWorldsHead, "Eater of Worlds", Abbr:"EoW", Worm:true);
+        PissedOffBoss EoWBody = new PissedOffBoss(NPCID.EaterofWorldsBody, "Eater of Worlds Body", Abbr:"EoWB", Worm:true);
+        PissedOffBoss EoWTail = new PissedOffBoss(NPCID.EaterofWorldsTail, "Eater of Worlds Tail", Abbr:"EoWT", Worm:true);
         void defineEoWMinions(ref PissedOffBoss EoW)
         {
             EoW.minions.Add([0.3,
@@ -72,8 +69,8 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Brain of Cthulhu
-        PissedOffBoss BoC = new PissedOffBoss(NPCID.BrainofCthulhu);
-        PissedOffBoss Creeper = new PissedOffBoss(NPCID.Creeper, Parts:true);
+        PissedOffBoss BoC = new PissedOffBoss(NPCID.BrainofCthulhu, "Brain of Cthulhu", Abbr:"BoC");
+        PissedOffBoss Creeper = new PissedOffBoss(NPCID.Creeper, "Creeper", Abbr:"CP", Parts:true);
         void defineBoCMinions(ref PissedOffBoss BoC)
         {
             BoC.minions.Add([0.1, NPCID.Creeper]);
@@ -88,7 +85,7 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Queen Bee
-        PissedOffBoss QueenBee = new PissedOffBoss(NPCID.QueenBee);
+        PissedOffBoss QueenBee = new PissedOffBoss(NPCID.QueenBee, "Queen Bee", Abbr:"QB");
         void defineQueenBeeMinions(ref PissedOffBoss QueenBee)
         {
             QueenBee.minions.Add([0.1, NPCID.Bee, NPCID.BeeSmall]);
@@ -103,8 +100,8 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Skeletron
-        PissedOffBoss Skeletron = new PissedOffBoss(NPCID.Skeleton);
-        PissedOffBoss SkeletronHand = new PissedOffBoss(NPCID.Skeleton, Parts: true);
+        PissedOffBoss Skeletron = new PissedOffBoss(NPCID.SkeletronHead, "Skeletron", Abbr:"SK");
+        PissedOffBoss SkeletronHand = new PissedOffBoss(NPCID.SkeletronHand, "Skeletron Hand", Abbr:"SKH", Parts: true);
         void defineSkeletronMinions(ref PissedOffBoss Skeletron)
         {
             Skeletron.minions.Add([0.4, NPCID.Skeleton]);
@@ -126,7 +123,7 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Deerclops
-        PissedOffBoss Deerclops = new PissedOffBoss(NPCID.Deerclops);
+        PissedOffBoss Deerclops = new PissedOffBoss(NPCID.Deerclops, "Deerclops", Abbr:"DC");
         void defineDeerclopsMinions(ref PissedOffBoss Deerclops)
         {
             Deerclops.minions.Add([1, NPCID.IceSlime, NPCID.Penguin, NPCID.IceBat, NPCID.SnowFlinx, NPCID.SpikedIceSlime, NPCID.ArmoredViking, 
@@ -142,8 +139,8 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for the Wall of Flesh
-        PissedOffBoss WoF = new PissedOffBoss(NPCID.WallofFlesh);
-        PissedOffBoss WoFEye = new PissedOffBoss(NPCID.WallofFleshEye, Parts: true);
+        PissedOffBoss WoF = new PissedOffBoss(NPCID.WallofFlesh, "Wall of Flesh", Abbr:"WoF");
+        PissedOffBoss WoFEye = new PissedOffBoss(NPCID.WallofFleshEye, "Wall of Flesh Eye", Abbr:"WoFE", Parts: true);
         void defineWallOfFleshMinions(ref PissedOffBoss WoF)
         {
             WoF.minions.Add([0.1, NPCID.TheHungry, NPCID.TheHungryII, NPCID.LeechHead, NPCID.LeechBody, NPCID.LeechTail]);
@@ -156,7 +153,7 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for the Queen Slime
-        PissedOffBoss QueenSlime = new PissedOffBoss(NPCID.QueenSlimeBoss);
+        PissedOffBoss QueenSlime = new PissedOffBoss(NPCID.QueenSlimeBoss, "Queen Slime", Abbr:"QS");
         void defineQueenSlimeMinions(ref PissedOffBoss QueenSlime)
         {
             QueenSlime.minions.Add([0.1, NPCID.QueenSlimeMinionBlue, 
@@ -183,8 +180,8 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for The Twins
-        PissedOffBoss Retinazer = new PissedOffBoss(NPCID.Retinazer);
-        PissedOffBoss Spazmatism = new PissedOffBoss(NPCID.Spazmatism);
+        PissedOffBoss Retinazer = new PissedOffBoss(NPCID.Retinazer, "Retinazer", Abbr:"Rz");
+        PissedOffBoss Spazmatism = new PissedOffBoss(NPCID.Spazmatism, "Spazmatism", Abbr:"Spz");
         void defineTwinsMinions(ref PissedOffBoss Twins)
         {
             Twins.minions.Add([0.2, NPCID.ServantofCthulhu]);
@@ -201,10 +198,10 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for The Destroyer
-        PissedOffBoss DestroyerHead = new PissedOffBoss(NPCID.TheDestroyer, Worm:true);
-        PissedOffBoss DestroyerBody = new PissedOffBoss(NPCID.TheDestroyerBody, Worm:true);
-        PissedOffBoss DestroyerTail = new PissedOffBoss(NPCID.TheDestroyerTail, Worm:true);
-        PissedOffBoss Probe = new PissedOffBoss(NPCID.Probe, Parts:true);
+        PissedOffBoss DestroyerHead = new PissedOffBoss(NPCID.TheDestroyer, "Destroyer", Abbr:"Des", Worm:true);
+        PissedOffBoss DestroyerBody = new PissedOffBoss(NPCID.TheDestroyerBody, "Destroyer Body", Abbr:"DesB", Worm:true);
+        PissedOffBoss DestroyerTail = new PissedOffBoss(NPCID.TheDestroyerTail, "Destroyer Tail", Abbr:"DesT", Worm:true);
+        PissedOffBoss Probe = new PissedOffBoss(NPCID.Probe, "Probe", "PB", Parts:true);
         void defineDestroyerMinions(ref PissedOffBoss Destroyer)
         {
             Destroyer.minions.Add([0.1, NPCID.Probe, NPCID.Creeper]);
@@ -227,11 +224,11 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Skeletron Prime
-        PissedOffBoss SkeletronPrime = new PissedOffBoss(NPCID.SkeletronPrime);
-        PissedOffBoss SkeletronPrimeCannon = new PissedOffBoss(NPCID.PrimeCannon, Parts:true);
-        PissedOffBoss SkeletronPrimeSaw = new PissedOffBoss(NPCID.PrimeSaw, Parts:true);
-        PissedOffBoss SkeletronPrimeVice = new PissedOffBoss(NPCID.PrimeVice, Parts:true);
-        PissedOffBoss SkeletronPrimeLaser = new PissedOffBoss(NPCID.PrimeLaser, Parts:true);
+        PissedOffBoss SkeletronPrime = new PissedOffBoss(NPCID.SkeletronPrime, "Skeletron Prime", Abbr:"SP");
+        PissedOffBoss SkeletronPrimeCannon = new PissedOffBoss(NPCID.PrimeCannon, "Skeletron Prime Cannon", Abbr:"SPC", Parts:true);
+        PissedOffBoss SkeletronPrimeSaw = new PissedOffBoss(NPCID.PrimeSaw, "Skeletron Prime Saw", Abbr:"SPS", Parts:true);
+        PissedOffBoss SkeletronPrimeVice = new PissedOffBoss(NPCID.PrimeVice, "Skeletron Prime Vice", Abbr:"SPV", Parts:true);
+        PissedOffBoss SkeletronPrimeLaser = new PissedOffBoss(NPCID.PrimeLaser, "Skeletron Prime Lazer", Abbr:"SPL", Parts:true);
         void defineSkeletronPrimeMinions(ref PissedOffBoss SkeletronPrime)
         {
             SkeletronPrime.minions.Add([0.35, NPCID.PrimeCannon, NPCID.PrimeSaw, NPCID.PrimeVice, NPCID.PrimeLaser]);
@@ -256,7 +253,7 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Plantera
-        PissedOffBoss Plantera = new PissedOffBoss(NPCID.Plantera);
+        PissedOffBoss Plantera = new PissedOffBoss(NPCID.Plantera, "Plantera", Abbr:"PL");
         void definePlanteraMinions(ref PissedOffBoss Plantera)
         {
             Plantera.minions.Add([0.2, NPCID.Bee, NPCID.BeeSmall]);
@@ -275,11 +272,11 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Golem
-        PissedOffBoss Golem = new PissedOffBoss(NPCID.Golem);
-        PissedOffBoss GolemFistLeft = new PissedOffBoss(NPCID.GolemFistLeft, Parts:true);
-        PissedOffBoss GolemFistRight = new PissedOffBoss(NPCID.GolemFistRight, Parts:true);
-        PissedOffBoss GolemHead = new PissedOffBoss(NPCID.GolemHead, Parts:true);
-        PissedOffBoss GolemHeadFree = new PissedOffBoss(NPCID.GolemHeadFree, Parts:true);
+        PissedOffBoss Golem = new PissedOffBoss(NPCID.Golem, "Golem", Abbr:"Go");
+        PissedOffBoss GolemFistLeft = new PissedOffBoss(NPCID.GolemFistLeft, "Golem", Abbr:"GoF", Parts:true);
+        PissedOffBoss GolemFistRight = new PissedOffBoss(NPCID.GolemFistRight, "Golem", Abbr:"GoF", Parts:true);
+        PissedOffBoss GolemHead = new PissedOffBoss(NPCID.GolemHead, "Golem Head", Abbr:"GoH", Parts:true);
+        PissedOffBoss GolemHeadFree = new PissedOffBoss(NPCID.GolemHeadFree, "Golem Head Free", Abbr:"GoHF", Parts:true);
         void defineGolemMinions(ref PissedOffBoss Golem)
         {
             Golem.minions.Add([1, NPCID.GolemHead, NPCID.GolemHeadFree, NPCID.GolemFistLeft, NPCID.GolemFistRight]);
@@ -288,7 +285,7 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Duke Fishron
-        PissedOffBoss DukeFishron = new PissedOffBoss(NPCID.DukeFishron);
+        PissedOffBoss DukeFishron = new PissedOffBoss(NPCID.DukeFishron, "Duke Fishron", Abbr: "DF");
         void defineDukeFishronMinions(ref PissedOffBoss DukeFishron)
         {
             DukeFishron.minions.Add([0.3, NPCID.Sharkron, NPCID.Sharkron2]);
@@ -308,7 +305,7 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Empress of Light
-        PissedOffBoss EoL = new PissedOffBoss(NPCID.HallowBoss);
+        PissedOffBoss EoL = new PissedOffBoss(NPCID.HallowBoss, "Empress of Light", Abbr: "EoL");
         void defineEmpressofLightMinions(ref PissedOffBoss EoL)
         {
             EoL.minions.Add([0.5, NPCID.EmpressButterfly]);
@@ -324,8 +321,7 @@ namespace SlayingMinionsPissOffBosses
 
 
         //store a list of all of the minions for Lunatic Cultist
-        PissedOffBoss LunaticCultist = new PissedOffBoss(NPCID.CultistBoss);
-        PissedOffBoss LunaticCultistClone = new PissedOffBoss(NPCID.CultistBossClone, Parts:true);
+        PissedOffBoss LunaticCultist = new PissedOffBoss(NPCID.CultistBoss, "Lunatic Cultist", Abbr:"LC");
         void defineLunaticCultistMinions(ref PissedOffBoss Cultist)
         {
             Cultist.minions.Add([0.25, NPCID.BigBoned, NPCID.ShortBones, NPCID.AngryBones, NPCID.DarkCaster, NPCID.CursedSkull, 
@@ -343,11 +339,10 @@ namespace SlayingMinionsPissOffBosses
         }
         
 
-
-        PissedOffBoss MoonLord = new PissedOffBoss(NPCID.MoonLordCore);
-        PissedOffBoss MoonLordFreeEye = new PissedOffBoss(NPCID.MoonLordFreeEye, Parts:true);
-        PissedOffBoss MoonLordHand = new PissedOffBoss(NPCID.MoonLordHand, Parts: true);
-        PissedOffBoss MoonLordHead = new PissedOffBoss(NPCID.MoonLordHead, Parts: true);
+        PissedOffBoss MoonLord = new PissedOffBoss(NPCID.MoonLordCore, "Moon Lord", Abbr:"ML");
+        PissedOffBoss MoonLordFreeEye = new PissedOffBoss(NPCID.MoonLordFreeEye, "Moon Lord Free Eye", Abbr:"MLFE", Parts:true);
+        PissedOffBoss MoonLordHand = new PissedOffBoss(NPCID.MoonLordHand, "Moon Lord Hand", Abbr:"MLHA", Parts: true);
+        PissedOffBoss MoonLordHead = new PissedOffBoss(NPCID.MoonLordHead, "Moon Lord Head", Abbr:"MLHE", Parts: true);
         void defineMoonLordMinions(ref PissedOffBoss MoonLord)
         {
             MoonLord.minions.Add([0.01, NPCID.BrainScrambler, NPCID.RayGunner, NPCID.MartianOfficer, NPCID.GrayGrunt, 
@@ -448,19 +443,16 @@ namespace SlayingMinionsPissOffBosses
             allBosses[31] = EoL;
 
             defineLunaticCultistMinions(ref LunaticCultist);
-            defineLunaticCultistMinions(ref LunaticCultistClone);
             allBosses[32] = LunaticCultist;
-            allBosses[33] = LunaticCultistClone;
 
             defineMoonLordMinions(ref MoonLord);
             defineMoonLordMinions(ref MoonLordFreeEye);
             defineMoonLordMinions(ref MoonLordHand);
             defineMoonLordMinions(ref MoonLordHead);
-            allBosses[34] = MoonLord;
-            allBosses[35] = MoonLordFreeEye;
-            allBosses[36] = MoonLordHand;
-            allBosses[37] = MoonLordHead;
-
+            allBosses[33] = MoonLord;
+            allBosses[34] = MoonLordFreeEye;
+            allBosses[35] = MoonLordHand;
+            allBosses[36] = MoonLordHead;
         }
 
         //remove the definition for all of the bosses
@@ -501,7 +493,6 @@ namespace SlayingMinionsPissOffBosses
             DukeFishron = null;
             EoL = null;
             LunaticCultist = null;
-            LunaticCultistClone = null;
             MoonLord = null;
             MoonLordFreeEye = null;
             MoonLordHand = null;
