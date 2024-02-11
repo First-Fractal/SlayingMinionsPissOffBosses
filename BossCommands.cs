@@ -92,7 +92,7 @@ namespace SlayingMinionsPissOffBosses
                 message += line + "\n";
             }
 
-            caller.Reply(message, Color.Green);
+            caller.Reply(message, Color.LightGreen);
         }
 
     }
@@ -133,7 +133,7 @@ namespace SlayingMinionsPissOffBosses
             }
 
             //reply to the player with the aberration
-            caller.Reply(message, Color.ForestGreen);
+            caller.Reply(message, Color.LightGreen);
         }
     }
 
@@ -142,5 +142,4 @@ namespace SlayingMinionsPissOffBosses
     {
         public override string Command => "aberration";
     }
-
 }
