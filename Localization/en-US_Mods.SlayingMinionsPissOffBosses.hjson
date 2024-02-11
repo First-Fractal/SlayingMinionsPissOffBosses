@@ -1,1 +1,18 @@
+command: {
+	minions: {
+		desc: Display the "minions" a specific boss.
+		usage:
+			'''
+			   
+				/{0}  <boss name/aberration>
+				boss name - The name of the boss, not including capitalization. MAKE SURE TO REPALCE THE SPACES WITH UNDERSCORES! 
+				boss abbr - The aberration for the boss. Note that every boss has a abberation. Capitalization does not matter here.
+			   
+			'''
+		no_boss: The boss parameter is missing from the command.
+		invalid_boss: No boss has been found with the following name: {0}. Please try again.
+		too_much_parms: The command has to many arguments. Try Again.
+	}
 
+	abbr.desc: Display the aberration for all of the bosses.
+}
