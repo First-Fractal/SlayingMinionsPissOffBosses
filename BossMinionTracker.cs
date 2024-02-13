@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace SlayingMinionsPissOffBosses
 {
@@ -500,6 +501,43 @@ namespace SlayingMinionsPissOffBosses
             MoonLordHead = null;
 
             allBosses = null;
+        }
+
+        //save the info to the world
+        public override void SaveWorldData(TagCompound tag)
+        {
+            //go through all of the bosses
+            foreach(PissedOffBoss boss in allBosses)
+            {
+                //skip any bosses that dosent exist
+                if (boss == null)
+                    continue;
+
+                //save the boss id to the world tag with the info of enrage and kill count
+                tag[boss.type.ToString()] = string.Format("{0}:{1}", boss.enrage, boss.killCount);
+            }
+        }
+
+        public override void LoadWorldData(TagCompound tag)
+        {
+            //go through all of the bosses
+            foreach (PissedOffBoss boss in allBosses)
+            {
+                //skip any bosses that dosent exist
+                if (boss == null)
+                    continue;
+
+                //check if the current boss has been saved to the world
+                if (tag.ContainsKey(boss.type.ToString()))
+                {
+                    //get the info saved from that boss
+                    string[] message = tag.GetString(boss.type.ToString()).Split(":");
+
+                    //decode it and save it to the boss
+                    boss.enrage = double.Parse(message[0]);
+                    boss.killCount = int.Parse(message[1]);
+                }
+            }
         }
 
         public override void NetSend(BinaryWriter writer)
