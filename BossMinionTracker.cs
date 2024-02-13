@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using System.IO;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SlayingMinionsPissOffBosses
@@ -499,6 +500,44 @@ namespace SlayingMinionsPissOffBosses
             MoonLordHead = null;
 
             allBosses = null;
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            //go through all of the boss on the list
+            foreach (PissedOffBoss boss in allBosses)
+            {
+                //ignore the boss if it doesn't exist
+                if (boss == null)
+                    continue;
+                //send the boss type, enrage status, and the kill count to all of the clients
+                writer.Write(boss.type);
+                writer.Write(boss.enrage);
+                writer.Write(boss.killCount);
+            }
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            //go through all of the boss on the list
+            foreach (PissedOffBoss boss in allBosses)
+            {
+                //ignore the boss if it doesn't exist
+                if (boss == null)
+                    continue;
+
+                //get the info from the message that's sent from the server
+                int type = reader.ReadInt32();
+                double enrage = reader.ReadDouble();
+                int killCount = reader.ReadInt32();
+
+                //apply the new info to the boss list
+                if (boss.type == type)
+                {
+                    boss.enrage = enrage;
+                    boss.killCount = killCount;
+                }
+            }
         }
     }
 }

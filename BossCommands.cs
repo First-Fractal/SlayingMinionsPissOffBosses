@@ -142,4 +142,51 @@ namespace SlayingMinionsPissOffBosses
     {
         public override string Command => "aberration";
     }
+
+    internal class BossInfoCommand : ModCommand
+    {
+        //make the command run on all sides, since it's client side
+        public override CommandType Type => CommandType.Chat;
+
+        //the start of the command
+        public override string Command => "test";
+
+        //explain on what the command does
+        public override string Description => Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.abbr.desc");
+
+        public override void Action(CommandCaller caller, string input, string[] args)
+        {
+            string message = "";
+
+            PissedOffBoss[] allBosses = BossMinionTracker.allBosses;
+
+            foreach (PissedOffBoss boss in allBosses)
+            {
+                if (boss == null)
+                    continue;
+
+                NPC npc = new NPC();
+                npc.SetDefaults_ForNetId(boss.type, 0);
+
+                int enrageHP = npc.lifeMax + MinionSlayPissOff.EnrangeHPFormula(boss.enrage, npc.lifeMax);
+                int enrageDam = npc.damage + MinionSlayPissOff.EnrangeDamageFormula(boss.enrage, npc.damage);
+                    
+                message += string.Format("{0}: {1} HP, {2} Damage\n", boss.name, enrageHP, enrageDam);
+            }
+
+            caller.Reply(message);
+
+            //foreach(PissedOffBoss boss in allBosses)
+            //{
+            //    if (boss == null || boss.parts)
+            //        continue;
+
+            //    NPC npc = new NPC();
+            //    npc.SetDefaults_ForNetId(boss.type, 0);
+            //    int newHP = npc.lifeMax + MinionSlayPissOff.EnrangeHPFormula(boss.enrage, npc.lifeMax);
+            //    int newDamage = npc.damage + MinionSlayPissOff.EnrangeDamageFormula(boss.enrage, npc.damage);
+            //    caller.Reply(string.Format("{0}: {1}HP, {2} Damage", boss.name, newHP, newDamage));
+            //}
+        }
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SlayingMinionsPissOffBosses
@@ -75,6 +76,8 @@ namespace SlayingMinionsPissOffBosses
         //runs whenever a npc dies
         public override void OnKill(NPC npc)
         {
+            base.OnKill(npc);
+
             //loop through all of the bosses stored
             foreach (PissedOffBoss boss in BossMinionTracker.allBosses)
             {
@@ -90,16 +93,21 @@ namespace SlayingMinionsPissOffBosses
                             //check if the current npc is on the list
                             if (npc.type == (short)level[i])
                             {
-                                //increase the current boss enrage and killcount
+                                //increase the current boss enrage and kill count
                                 boss.enrage += (double)level[0];
                                 boss.killCount++;
+
+                                //tell the server to update the info to all of the clients
+                                if (Main.netMode == NetmodeID.Server)
+                                    NetMessage.SendData(MessageID.WorldData);
+
+                                //break the loop
+                                break;
                             }
                         }
                     });
                 }
             }
-
-            base.OnKill(npc);
         }
     }
 }
