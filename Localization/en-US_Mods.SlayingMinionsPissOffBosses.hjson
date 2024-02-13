@@ -1,18 +1,29 @@
 command: {
-	minions: {
-		desc: Display the "minions" a specific boss.
-		usage:
-			'''
-			   
-				/{0}  <boss name/aberration>
-				boss name - The name of the boss, not including capitalization. MAKE SURE TO REPALCE THE SPACES WITH UNDERSCORES! 
-				boss abbr - The aberration for the boss. Note that every boss has a abberation. Capitalization does not matter here.
-			   
-			'''
-		no_boss: The boss parameter is missing from the command.
-		invalid_boss: No boss has been found with the following name: {0}. Please try again.
-		too_much_parms: The command has to many arguments. Try Again.
-	}
+	desc: Display info about a specific boss
+	usage:
+		'''
+			/{0} <boss name/aberration> <info/stat/stats minion/minions>
+			boss name: The name of the boss, not including capitalization. MAKE SURE TO REPALCE THE SPACES WITH UNDERSCORES! 
+			boss aberration: The aberration for the boss. Note that every boss has a abberation. Capitalization does not matter here.
+			
+			info: display the current enrage stats for the boss.
+			stat: display the current enrage stats for the boss.
+			stats: display the current enrage stats for the boss.
 
+			minion: display a list of all the minions
+			minions: display a list of all the minions
+		'''
+	no_command: The command is missing arguments.
+	no_boss: The boss argument is missing.
+	no_action: The action argument is missing.
+	many_commands: The command has too many arguments.
+	invalid_boss: No boss has been found with the following name: {0}.
+	invalid_action: There was no action command that is associated with {0}.
+	stats: The {0} has {1} HP and does {2} Damage.
+	action_info: info
+	action_stat: stat
+	action_stats: stats
+	action_minion: minion
+	action_minions: minions
 	abbr.desc: Display the aberration for all of the bosses.
 }

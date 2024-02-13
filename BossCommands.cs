@@ -1,108 +1,13 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Localization;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.Localization;
+using Microsoft.Xna.Framework;
 
 namespace SlayingMinionsPissOffBosses
 {
-    internal class BossMinionsCommand : ModCommand
-    {
-        //make the command run on all sides, since it's client side
-        public override CommandType Type => CommandType.Chat;
-
-        //the start of the command
-        public override string Command => "minions";
-
-        //explain on what the command does
-        public override string Description => Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.minions.desc");
-
-        //explain on how to use the command
-        public override string Usage => Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.minions.usage", Command);
-
-
-        //the trigger for the command
-        public override void Action(CommandCaller caller, string input, string[] args)
-        {
-            //throw an error if the command is missing the boss
-            if (args.Length < 1)
-                throw new UsageException(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.minions.no_boss"));
-
-            //throw an error if the command has too many arguments
-            if (args.Length > 1)
-                throw new UsageException(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.minions.too_much_parms"));
-
-            //grab and format the boss command
-            string bossCommand = args[0].Replace(" ", "_").ToLower().Trim();
-            PissedOffBoss boss = null;
-
-            //loop through all of the bosses
-            foreach (PissedOffBoss enrageBoss in BossMinionTracker.allBosses)
-            {
-                //skip the current boss if it's empty
-                if (enrageBoss == null)
-                    continue;
-
-                //get the boss name and format it 
-                string bossName = enrageBoss.name.Replace(" ", "_").ToLower().Trim();
-
-                //check if the boss command fits the name or the abbr
-                if (bossCommand == bossName || bossCommand == enrageBoss.abbr.ToLower().Trim())
-                    boss = enrageBoss;
-            }
-
-            //throw an error if no boss is founded
-            if (boss == null)
-                throw new UsageException(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.minions.invalid_boss", bossCommand));
-
-            //get the message ready to send
-            string message = "";
-
-            //loop through all levels of the boss minions
-            foreach (object[] level in boss.minions)
-            {
-                //get the message ready for each level
-                string line = "";
-                List<int> minions = new List<int>();
-
-                //loop through all of the contents in the level
-                for (int j = 0; j < level.Length; j++)
-                {
-                    //the first content is the modifier
-                    if (j == 0)
-                        line += level[j].ToString() + "x: ";
-                    else
-                    {
-                        //get the npc from the npc id
-                        NPC npc = new NPC();
-                        npc.SetDefaults_ForNetId((short)level[j], 0);
-
-                        //add the minion to the list
-                        line += NPCID.Search.GetName((short)level[j]);
-
-                        //if it's not the last minion, then dont add in a comma
-                        if (level[j] != level.Last())
-                            line += ", ";
-                    }
-                }
-
-                //add the line to the message
-                message += line + "\n";
-            }
-
-            caller.Reply(message, Color.LightGreen);
-        }
-
-    }
-
-    //the same thing as the previous command, but the trigger is minion
-    internal class bossMinionCommand : BossMinionsCommand
-    {
-        public override string Command => "minion";
-    }
-
     internal class bossAbbrCommand : ModCommand
     {
         //make the command run on all sides, since it's client side
@@ -133,7 +38,7 @@ namespace SlayingMinionsPissOffBosses
             }
 
             //reply to the player with the aberration
-            caller.Reply(message, Color.LightGreen);
+            caller.Reply(message, Color.SeaGreen);
         }
     }
 
@@ -143,50 +48,123 @@ namespace SlayingMinionsPissOffBosses
         public override string Command => "aberration";
     }
 
-    internal class BossInfoCommand : ModCommand
+    internal class BossEnrageCommand : ModCommand
     {
         //make the command run on all sides, since it's client side
         public override CommandType Type => CommandType.Chat;
 
         //the start of the command
-        public override string Command => "test";
+        public override string Command => "enrage";
 
         //explain on what the command does
-        public override string Description => Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.abbr.desc");
+        public override string Description => Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.desc", Command);
+
+        //explain on how to use the command
+        public override string Usage => Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.usage", Command);
 
         public override void Action(CommandCaller caller, string input, string[] args)
         {
-            string message = "";
+            //check if the boss argument is missing
+            if (args.Length == 0)
+                throw new UsageException(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.no_boss"));
 
-            PissedOffBoss[] allBosses = BossMinionTracker.allBosses;
+            //check if the action argument is missing
+            if (args.Length == 1)
+                throw new UsageException(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.no_action"));
 
-            foreach (PissedOffBoss boss in allBosses)
+            //check if there is too many arguments
+            if (args.Length > 2)
+                throw new UsageException(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.many_commands"));
+
+            //get all of the arguments
+            string bossName = args[0].ToLower().Trim();
+            string action = args[1];
+
+            //get the boss ready
+            PissedOffBoss boss = null;
+
+            //loop through all of the bosses
+            foreach (PissedOffBoss bossCheck in BossMinionTracker.allBosses)
             {
-                if (boss == null)
+                //ignore the current boss if it dosent exist
+                if (bossCheck == null)
                     continue;
 
+                //save the boss if the boss name match the current boss name or aberration
+                if (bossName == bossCheck.name.Replace(" ", "_").ToLower().Trim() || bossName == bossCheck.abbr.ToLower().Trim())
+                    boss = bossCheck;
+            }
+
+            //if no boss was found, then throw an error
+            if (boss == null)
+                throw new UsageException(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.invalid_boss", bossName));
+
+
+            //check if the action command match the info action
+            if (action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_info") || 
+                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_stat") ||
+                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_stats"))
+            {
+                //create a dummy npc from the boss type
                 NPC npc = new NPC();
                 npc.SetDefaults_ForNetId(boss.type, 0);
 
+                //calculate it's new life and damage
                 int enrageHP = npc.lifeMax + MinionSlayPissOff.EnrangeHPFormula(boss.enrage, npc.lifeMax);
                 int enrageDam = npc.damage + MinionSlayPissOff.EnrangeDamageFormula(boss.enrage, npc.damage);
-                    
-                message += string.Format("{0}: {1} HP, {2} Damage\n", boss.name, enrageHP, enrageDam);
+
+                //prepare the message to send back
+                string message = string.Format(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.stats", 
+                                    npc.FullName, enrageHP, enrageDam));
+
+                //send the message to the player
+                caller.Reply(message, Color.LightGreen);
+            } 
+            else if (action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_minion") ||
+                     action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_minions"))
+            {
+                //loop through all levels of the boss minions
+                foreach (object[] level in boss.minions)
+                {
+                    //get the message ready for each level
+                    string line = "";
+                    List<int> minions = new List<int>();
+
+                    //loop through all of the contents in the level
+                    for (int j = 0; j < level.Length; j++)
+                    {
+                        //the first content is the modifier
+                        if (j == 0)
+                            line += level[j].ToString() + "x: ";
+                        else
+                        {
+                            //get the npc from the npc id
+                            NPC npc = new NPC();
+                            npc.SetDefaults_ForNetId((short)level[j], 0);
+
+                            //add the minion to the list
+                            line += NPCID.Search.GetName((short)level[j]);
+
+                            //if it's not the last minion, then dont add in a comma
+                            if (level[j] != level.Last())
+                                line += ", ";
+                        }
+                    }
+
+                    //send the message to the player
+                    caller.Reply(line, Color.LawnGreen);
+                }
+            } else
+            {
+                throw new UsageException(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.invalid_action", action));
             }
-
-            caller.Reply(message);
-
-            //foreach(PissedOffBoss boss in allBosses)
-            //{
-            //    if (boss == null || boss.parts)
-            //        continue;
-
-            //    NPC npc = new NPC();
-            //    npc.SetDefaults_ForNetId(boss.type, 0);
-            //    int newHP = npc.lifeMax + MinionSlayPissOff.EnrangeHPFormula(boss.enrage, npc.lifeMax);
-            //    int newDamage = npc.damage + MinionSlayPissOff.EnrangeDamageFormula(boss.enrage, npc.damage);
-            //    caller.Reply(string.Format("{0}: {1}HP, {2} Damage", boss.name, newHP, newDamage));
-            //}
         }
+    }
+
+
+    //the same thing as the previous command, but the trigger is boss
+    internal class BossBossCommand : BossEnrageCommand
+    {
+        public override string Command => "boss";
     }
 }
