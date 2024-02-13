@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace SlayingMinionsPissOffBosses
@@ -101,6 +103,17 @@ namespace SlayingMinionsPissOffBosses
                                 if (Main.netMode == NetmodeID.Server)
                                     NetMessage.SendData(MessageID.WorldData);
 
+                                //send a warning message for every 10'th minion kill
+                                if (boss.killCount % 10 == 0)
+                                {
+                                    //get the npc
+                                    NPC npc = new NPC();
+                                    npc.SetDefaults_ForNetId(boss.type, 0);
+
+                                    //send the warning to everyone
+                                    ffFunc.Talk(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.warning", npc.FullName), Color.OrangeRed);
+                                }
+                                
                                 //break the loop
                                 break;
                             }

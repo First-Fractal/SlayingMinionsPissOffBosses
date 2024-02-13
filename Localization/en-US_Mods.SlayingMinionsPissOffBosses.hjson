@@ -27,3 +27,5 @@ command: {
 	action_minions: minions
 	abbr.desc: Display the aberration for all of the bosses.
 }
+
+warning: Uh oh. You killed too many of {0}'s minions, and he/she is getting pissed off about that.
