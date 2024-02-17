@@ -281,7 +281,7 @@ namespace SlayingMinionsPissOffBosses
         PissedOffBoss GolemHeadFree = new PissedOffBoss(NPCID.GolemHeadFree, "Golem Head Free", Abbr:"GoHF", Parts:true);
         void defineGolemMinions(ref PissedOffBoss Golem)
         {
-            Golem.minions.Add([1, NPCID.GolemHead, NPCID.GolemHeadFree, NPCID.GolemFistLeft, NPCID.GolemFistRight]);
+            Golem.minions.Add([1.0, NPCID.GolemHead, NPCID.GolemHeadFree, NPCID.GolemFistLeft, NPCID.GolemFistRight]);
             Golem.minions.Add([1.25, NPCID.Lihzahrd, NPCID.LihzahrdCrawler, NPCID.FlyingSnake]);
         }
 
@@ -292,7 +292,7 @@ namespace SlayingMinionsPissOffBosses
         {
             DukeFishron.minions.Add([0.3, NPCID.Sharkron, NPCID.Sharkron2]);
 
-            DukeFishron.minions.Add([1, NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.Crab, NPCID.AngryNimbus, 
+            DukeFishron.minions.Add([1.0, NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.Crab, NPCID.AngryNimbus, 
                 NPCID.FlyingFish, NPCID.EyeballFlyingFish, NPCID.ZombieMerman]);
 
             DukeFishron.minions.Add([1.25,  NPCID.BloodJelly, NPCID.BloodFeeder, NPCID.GoldfishWalker, NPCID.SeaSnail, NPCID.Duck, 
