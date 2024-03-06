@@ -2,7 +2,7 @@ command: {
 	desc: Display info about a specific boss
 	usage:
 		'''
-			/{0} <boss name/aberration> <info/stat/stats minion/minions>
+			/{0} <boss name/aberration> <info/stat/stats minion/minions kill/count/kill_count/killCount>
 			boss name: The name of the boss, not including capitalization. MAKE SURE TO REPALCE THE SPACES WITH UNDERSCORES! 
 			boss aberration: The aberration for the boss. Note that every boss has a abberation. Capitalization does not matter here.
 			
@@ -12,6 +12,11 @@ command: {
 
 			minion: display a list of all the minions
 			minions: display a list of all the minions
+
+			kill: display how manny minions were killed for the boss.
+			count: display how manny minions were killed for the boss.
+			kill_count: display how manny minions were killed for the boss.
+			killCount: display how manny minions were killed for the boss.
 		'''
 	no_command: The command is missing arguments.
 	no_boss: The boss argument is missing.
@@ -20,8 +25,13 @@ command: {
 	invalid_boss: No boss has been found with the following name: {0}.
 	invalid_action: There was no action command that is associated with {0}.
 	stats: The {0} has {1} HP and does {2} Damage.
+	kill: You have killed {0} of {1}'s minions.
 	action_info: info
 	action_stat: stat
+	action_kill: kill
+	action_count: count
+	action_kill_count: kill_count
+	action_killCount: killCount
 	action_stats: stats
 	action_minion: minion
 	action_minions: minions

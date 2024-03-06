@@ -10,7 +10,7 @@ namespace SlayingMinionsPissOffBosses
         public string name = Name;
         public string abbr = Abbr;
         public bool worm = Worm;
-        public double wormModifier = 0.05;
+        public double wormModifier = 0.01;
 
         public bool parts = Parts;
         public double partsModifier = 0.5;

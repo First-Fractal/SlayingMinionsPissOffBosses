@@ -90,7 +90,7 @@ namespace SlayingMinionsPissOffBosses
         PissedOffBoss QueenBee = new PissedOffBoss(NPCID.QueenBee, "Queen Bee", Abbr:"QB");
         void defineQueenBeeMinions(ref PissedOffBoss QueenBee)
         {
-            QueenBee.minions.Add([0.1, NPCID.Bee, NPCID.BeeSmall]);
+            QueenBee.minions.Add([0.25, NPCID.Bee, NPCID.BeeSmall]);
 
             QueenBee.minions.Add([1, NPCID.BigHornetStingy, NPCID.LittleHornetStingy, NPCID.BigHornetSpikey, NPCID.LittleHornetSpikey, 
                 NPCID.BigHornetLeafy, NPCID.LittleHornetLeafy, NPCID.BigHornetHoney, NPCID.LittleHornetHoney, NPCID.BigHornetFatty, 

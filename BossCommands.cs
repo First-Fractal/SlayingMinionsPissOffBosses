@@ -78,7 +78,7 @@ namespace SlayingMinionsPissOffBosses
 
             //get all of the arguments
             string bossName = args[0].ToLower().Trim();
-            string action = args[1];
+            string action = args[1].ToLower().Trim();
 
             //get the boss ready
             PissedOffBoss boss = null;
@@ -101,9 +101,9 @@ namespace SlayingMinionsPissOffBosses
 
 
             //check if the action command match the info action
-            if (action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_info") || 
-                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_stat") ||
-                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_stats"))
+            if (action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_info").ToLower().Trim() || 
+                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_stat").ToLower().Trim() ||
+                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_stats").ToLower().Trim())
             {
                 //create a dummy npc from the boss type
                 NPC npc = new NPC();
@@ -120,8 +120,24 @@ namespace SlayingMinionsPissOffBosses
                 //send the message to the player
                 caller.Reply(message, Color.LightGreen);
             } 
-            else if (action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_minion") ||
-                     action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_minions"))
+            else if (action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_kill").ToLower().Trim() ||
+                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_count").ToLower().Trim() ||
+                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_kill_count").ToLower().Trim() ||
+                action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_killCount").ToLower().Trim())
+            {
+                //create a dummy npc from the boss type
+                NPC npc = new NPC();
+                npc.SetDefaults_ForNetId(boss.type, 0);
+
+                //prepare the message to send back
+                string message = string.Format(Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.kill",
+                                    boss.killCount, npc.FullName));
+
+                //send the message to the player
+                caller.Reply(message, Color.LightGreen);
+            }
+            else if (action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_minion").ToLower().Trim() ||
+                     action == Language.GetTextValue("Mods.SlayingMinionsPissOffBosses.command.action_minions").ToLower().Trim())
             {
                 //loop through all levels of the boss minions
                 foreach (object[] level in boss.minions)
