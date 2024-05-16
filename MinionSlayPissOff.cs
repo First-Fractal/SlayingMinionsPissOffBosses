@@ -104,7 +104,7 @@ namespace SlayingMinionsPissOffBosses
                                     NetMessage.SendData(MessageID.WorldData);
 
                                 //send a warning message for every 25th minion kill
-                                if (boss.killCount % 25 == 0)
+                                if (boss.enrage % 5 == 0)
                                 {
                                     //get the npc
                                     NPC npc = new NPC();
